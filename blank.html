@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+</head>
+<body>
+	<script>
+	function computerPlay(){
+	
+var roll = Math.floor(Math.random() * Math.floor(3))
+var answer;
+
+if (roll == 0) {
+	answer = "rock";
+} if (roll == 1) {
+	answer = "paper";
+} if (roll == 2) {
+	answer = "scissors";
+}
+	return answer;
+}
+
+function playerSelection(){
+	var result = prompt ("What do you choose?").toLowerCase();
+	return result;
+
+}
+
+function playRound(playerResult, computerResult){
+	var finalResult = (playerResult == computerResult) ? "It's a draw!" :
+	(playerResult == "rock" && computerResult == "scissors") ? "Rock beats scissors, you win!" :
+	(playerResult == "rock" && computerResult == "paper") ? "Paper beats rock, you lose!" :
+	(playerResult == "paper" && computerResult == "scissors") ? "Scissors beats paper, you lose!" :
+	(playerResult == "paper" && computerResult == "rock") ? "Paper beats rock, you win!" :
+	(playerResult == "scissors" && computerResult == "rock") ? "Rock beats scissors, you lose!" :
+	(playerResult == "scissors" && computerResult == "paper") ? "Scissors beats paper, you win! ;
+	
+	return finalResult;
+}
+	</script>
+</body>
+</html>
