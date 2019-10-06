@@ -5,6 +5,13 @@
 </head>
 <body>
 	<script>
+		
+var playerSelection;
+var computerSelection;
+var playerTally = 0;
+var computerTally = 0;
+var finalResult;
+
 	function computerPlay(){
 	
 var roll = Math.floor(Math.random() * Math.floor(3))
@@ -20,23 +27,57 @@ if (roll == 0) {
 	return answer;
 }
 
-function playerSelection(){
+
+
+function playerPlay(){
 	var result = prompt ("What do you choose?").toLowerCase();
 	return result;
 
 }
-
+function game() {
+	
 function playRound(playerResult, computerResult){
-	var finalResult = (playerResult == computerResult) ? "It's a draw!" :
+	finalResult = (playerResult == computerResult) ? "It's a draw!" :
 	(playerResult == "rock" && computerResult == "scissors") ? "Rock beats scissors, you win!" :
 	(playerResult == "rock" && computerResult == "paper") ? "Paper beats rock, you lose!" :
 	(playerResult == "paper" && computerResult == "scissors") ? "Scissors beats paper, you lose!" :
 	(playerResult == "paper" && computerResult == "rock") ? "Paper beats rock, you win!" :
 	(playerResult == "scissors" && computerResult == "rock") ? "Rock beats scissors, you lose!" :
-	(playerResult == "scissors" && computerResult == "paper") ? "Scissors beats paper, you win! ;
+	(playerResult == "scissors" && computerResult == "paper") ? "Scissors beats paper, you win!" :
+	"Unknown result" ;
 	
 	return finalResult;
 }
+
+playerSelection = playerPlay();
+computerSelection = computerPlay();
+
+playRound(playerSelection, computerSelection);
+console.log (finalResult);
+
+if (finalResult.includes ("win") == true) {
+	playerTally += 1; 
+	return playerTally;
+} if (finalResult.includes ("lose") == true) {
+	computerTally += 1;
+	return computerTally; 
+} if (finalResult.includes ("draw") == true) {
+	return computerTally; 
+}
+}
+
+game();
+console.log(playerTally + " vs " + computerTally);
+game();
+console.log(playerTally + " vs " + computerTally);
+game();
+console.log(playerTally + " vs " + computerTally);
+game();
+console.log(playerTally + " vs " + computerTally);
+game();
+console.log(playerTally + " vs " + computerTally);
+
+
 	</script>
 </body>
 </html>
