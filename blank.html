@@ -77,6 +77,13 @@ console.log(playerTally + " vs " + computerTally);
 game();
 console.log(playerTally + " vs " + computerTally);
 
+if (playerTally > computerTally) {
+	alert("Congratulations, you won the game! Final scores: " + playerTally + " to " + computerTally);
+} if (playerTally < computerTally) {
+	alert ("You lost the game! Final scores: " + playerTally + " to " + computerTally);
+} if (playerTally == computerTally) {
+	alert ("It's a draw! Final scores: "+ playerTally + " to " + computerTally); 
+}
 
 	</script>
 </body>
