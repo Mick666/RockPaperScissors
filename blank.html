@@ -4,6 +4,22 @@
 	<title>Rock Paper Scissors</title>
 </head>
 <body>
+	<h1>Rock, Paper, Scissors game</h1>
+	<div>
+		<p id="tally">Current score:</p>
+	</div>
+	
+	<p>To play, pick an option:</p>
+	<div id="container">
+			<button id="1">Rock</button>
+			<button id="2">Paper</button>
+			<button id="3">Scissors</button>
+		</div>
+	<div>
+		<p id="results"></p>
+	</div>
+		
+</body>
 	<script>
 		
 var playerSelection;
@@ -12,29 +28,45 @@ var playerTally = 0;
 var computerTally = 0;
 var finalResult;
 
-	function computerPlay(){
-	
-var roll = Math.floor(Math.random() * Math.floor(3))
-var answer;
+const buttons = document.querySelectorAll('button');
 
-if (roll == 0) {
-	answer = "rock";
-} if (roll == 1) {
-	answer = "paper";
-} if (roll == 2) {
-	answer = "scissors";
-}
+buttons.forEach((button) => {
+
+	button.addEventListener('click', (e) => {
+		if (button.id == 1) {
+				playerSelection = "rock";
+		} else if (button.id == 2) {
+				playerSelection = "paper";
+		} else if (button.id == 3) {
+				playerSelection = "scissors";
+		}
+	game();
+	});
+});
+
+let computerPlay = function(){
+	
+	var roll = Math.floor(Math.random() * Math.floor(3))
+	var answer;
+
+	if (roll == 0) {
+		answer = "rock";
+	} if (roll == 1) {
+		answer = "paper";
+	} if (roll == 2) {
+		answer = "scissors";
+	}
 	return answer;
 }
 
 
 
-function playerPlay(){
+let playerPlay = function(){
 	var result = prompt ("What do you choose?").toLowerCase();
 	return result;
 
 }
-function game() {
+
 	
 function playRound(playerResult, computerResult){
 	finalResult = (playerResult == computerResult) ? "It's a draw!" :
@@ -49,42 +81,50 @@ function playRound(playerResult, computerResult){
 	return finalResult;
 }
 
-playerSelection = playerPlay();
-computerSelection = computerPlay();
+function game() {
 
-playRound(playerSelection, computerSelection);
-console.log (finalResult);
+playRound(playerSelection, computerPlay());
+document.getElementById("results").textContent = finalResult; 
+
+
 
 if (finalResult.includes ("win") == true) {
 	playerTally += 1; 
-	return playerTally;
-} if (finalResult.includes ("lose") == true) {
+} else if (finalResult.includes ("lose") == true) {
 	computerTally += 1;
-	return computerTally; 
-} if (finalResult.includes ("draw") == true) {
-	return computerTally; 
 }
+document.getElementById("tally").textContent = "Current score: " + playerTally + " vs " + computerTally;
+
+if (computerTally == 5 || playerTally == 5) {
+	if (playerTally > computerTally) {
+		document.getElementById("results").textContent = "Congratulations, you won the game! Final scores: " + playerTally + " to " + computerTally; 
+	} else if (playerTally < computerTally) {
+		document.getElementById("results").textContent = "You lost the game! Final scores: " + playerTally + " to " + computerTally;
+	} else if (playerTally == computerTally) {
+		document.getElementById("results").textContent = "It's a draw! Final scores: "+ playerTally + " to " + computerTally; }
 }
 
-game();
-console.log(playerTally + " vs " + computerTally);
-game();
-console.log(playerTally + " vs " + computerTally);
-game();
-console.log(playerTally + " vs " + computerTally);
-game();
-console.log(playerTally + " vs " + computerTally);
-game();
-console.log(playerTally + " vs " + computerTally);
+}
 
-if (playerTally > computerTally) {
+/* game();
+console.log(playerTally + " vs " + computerTally);
+//game();
+console.log(playerTally + " vs " + computerTally);
+//game();
+console.log(playerTally + " vs " + computerTally);
+//game();
+console.log(playerTally + " vs " + computerTally);
+//game();
+console.log(playerTally + " vs " + computerTally); */
+
+/* if (playerTally > computerTally) {
 	alert("Congratulations, you won the game! Final scores: " + playerTally + " to " + computerTally);
 } if (playerTally < computerTally) {
 	alert ("You lost the game! Final scores: " + playerTally + " to " + computerTally);
 } if (playerTally == computerTally) {
 	alert ("It's a draw! Final scores: "+ playerTally + " to " + computerTally); 
-}
+} */
 
 	</script>
-</body>
+
 </html>
